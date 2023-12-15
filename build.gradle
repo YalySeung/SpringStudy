@@ -1,0 +1,34 @@
+apply plugin: 'war'
+apply plugin: 'java'
+
+group 'mvcvue'
+version ''
+
+webAppDirName = "src/main/webapp"
+
+war {
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework:spring-web:5.3.22'
+	implementation 'javax.servlet:javax.servlet-api:4.0.1'
+	implementation 'org.springframework:spring-webmvc:5.3.8'
+	implementation 'org.springframework:spring-context:5.3.22'
+
+//    implementation 'org.springframework:spring-core:5.3.22'  
+//    implementation 'org.springframework:spring-context:5.3.22'  
+
+	implementation 'log4j:log4j:1.2.17'
+
+	testImplementation 'org.springframework:spring-test:5.3.8'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+	useJUnitPlatform()
+}

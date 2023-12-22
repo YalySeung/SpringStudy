@@ -1,4 +1,4 @@
-package com.mvcvue.controller.api;
+package com.mvcvue.controller.api.enjoy;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("")
-public class APITestController {
+@RequestMapping("/api/enjoy")
+public class EnjoyController {
     @GetMapping
-    public ResponseEntity<String> test(){
-        return ResponseEntity.ok("hello");
+    public ResponseEntity<String> enjoy(String temp){
+        return ResponseEntity.ok("hahaha");
     }
 }

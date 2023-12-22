@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
@@ -13,9 +14,12 @@ import java.util.List;
 
 @EnableWebMvc
 @ComponentScan(basePackages = "com.mvcvue")
+@EnableAspectJAutoProxy()
 public class VueMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/assets/**")
+                .addResourceLocations("classpath:/static/assets/");
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/"); // 정적 리소스 경로 설정
     }
@@ -28,6 +32,11 @@ public class VueMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    }
+
+    @Override
+    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
+        resolvers.add(new MyHandlerExceptionResolver());
     }
 
     @Override
